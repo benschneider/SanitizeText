@@ -33,7 +33,7 @@ A minimalist web application built with the Dioxus framework for real-time input
 To run the application in development mode with hot-reloading:
 
 ```bash
-cargo run --features web --target wasm32-unknown-unknown
+dx serve
 ```
 
 This will start a local development server, usually at `http://localhost:8080`.
