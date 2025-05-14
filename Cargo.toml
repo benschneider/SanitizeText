@@ -1,0 +1,25 @@
+[package]
+name = "sanitizer_gui"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+phf = { version = "0.11", features = ["macros"] }
+dioxus = { version = "0.6.3" }
+
+# You can enable only ONE of these at a time when building
+# Use `--features web` or `--features desktop` with `cargo` or `dx`
+
+[features]
+default = ["desktop"]
+web = ["dioxus/web"]
+desktop = ["dioxus/desktop"]
+
+[profile.wasm-dev]
+inherits = "dev"
+
+[profile.server-dev]
+inherits = "dev"
+
+[profile.android-dev]
+inherits = "dev"
