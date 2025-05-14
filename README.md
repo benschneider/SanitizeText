@@ -20,7 +20,7 @@ A minimalist web application built with the Dioxus framework for real-time input
 1. Clone the repository:
    ```bash
    git clone <repository_url>
-   cd sanitizer_gui
+   cd SanitizeText
    ```
 
 2. Build the project for release:

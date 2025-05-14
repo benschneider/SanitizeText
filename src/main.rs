@@ -61,7 +61,7 @@ fn app() -> Element {
                 div {
                     button {
                         onclick: move |_| {
-                            let (cleaned, count, found) = SanitizeText::clean_invisible(&input_text());
+                            let (cleaned, count, found) = sanitizetext::clean_invisible(&input_text());
                             output_text.set(cleaned);
                             removed_count.set(count);
                             explanation_list.set(found);
