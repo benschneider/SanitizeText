@@ -1,4 +1,4 @@
-# Dioxus Sanitizer (Web)
+# SanitizeText
 
 A minimalist web application built with the Dioxus framework for real-time input sanitization. This project focuses on providing a lightweight and fast solution for escaping HTML and JavaScript to prevent cross-site scripting (XSS) vulnerabilities in web applications.
 

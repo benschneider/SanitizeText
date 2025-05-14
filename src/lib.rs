@@ -208,7 +208,7 @@ pub fn print_help() {
     println!("🧼 Unicode Sanitizer CLI Help
 
 Usage:
-  sanitizer_gui <input_file_or_folder> [--output <output_path_or_dir>]
+  SanitizeText <input_file_or_folder> [--output <output_path_or_dir>]
 
 Options:
   -h, --help       Show this help message.
