@@ -25,7 +25,7 @@ A minimalist web application built with the Dioxus framework for real-time input
 
 2. Build the project for release:
    ```bash
-   cargo build --release
+   dx serve --platform web --features web
    ```
 
 ### Running Locally
