@@ -2,3 +2,4 @@
 /assets
 .gitignore
 *.lock
+.DS_Store
