@@ -45,11 +45,6 @@ To run the release build:
 ./target/release/sanitizer-web
 ```
 
-## Deployment
-
-### Automatic Deployment
-Set up a GitHub Actions workflow for automatic web deployment. This typically involves building the project for the `wasm32-unknown-unknown` target and deploying the output to GitHub Pages or a similar hosting service.
-
 ## Project Structure
 - `src/main.rs`: The main application entry point.
 - `src/lib.rs`: Contains the core sanitization logic and Dioxus components.
