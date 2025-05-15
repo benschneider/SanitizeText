@@ -79,7 +79,7 @@ pub static REPMAP: phf::Map<char, (char, &'static str)> = phf_map! {
     '\u{0445}' => ('x', "⚠️ Cyrillic small ha – resembles Latin 'x'."),
     '\u{3000}' => (' ', "⚠️ Ideographic space – large invisible character used in East Asian text."),
     '\u{FFFC}' => (' ', "⚠️ Object replacement character – invisible placeholder."),
-    '\u{0009}' => (' ', "⚠️ Tab character – may affect layout."),
+    //'\u{0009}' => ('    ', "⚠️ Tab character – replaced with 4 spaces. Consider making this configurable."),
     '\u{000B}' => (' ', "⚠️ Vertical tab – legacy formatting."),
     '\u{000C}' => (' ', "⚠️ Form feed – legacy formatting."),
     '\u{001C}' => (' ', "⚠️ File separator – non-printable control."),
@@ -104,12 +104,27 @@ pub fn clean_invisible(input: &str) -> (String, usize, Vec<String>) {
     let (cleaned, count, counts) = input.chars().fold(
         (String::new(), 0usize, HashMap::<&'static str, usize>::new()),
         |(mut acc, mut count, mut map), c| {
-            if let Some(&(rep, desc)) = REPMAP.get(&c) {
-                acc.push(rep);
-                count += 1;
-                *map.entry(desc).or_insert(0) += 1;
-            } else {
-                acc.push(c);
+            match c {
+                // First check if it's in the REPMAP
+                c if REPMAP.contains_key(&c) => {
+                    let (rep, desc) = REPMAP[&c];
+                    acc.push(rep);
+                    count += 1;
+                    *map.entry(desc).or_insert(0) += 1;
+                }
+                // Then check Private Use Area range (U+E0000 to U+E0FFF)
+                c if ('\u{E0000}'..='\u{E0FFF}').contains(&c) => {
+                    let code_point = c as u32 - 0xE0000;
+                    if let Some(mapped_c) = char::from_u32(code_point) {
+                        acc.push(mapped_c);
+                    } else {
+                        acc.push(' ');
+                    }
+                    count += 1;
+                    *map.entry("Private Use Area (E0000-E0FFF) – non-standard characters").or_insert(0) += 1;
+                }
+                // All other characters pass through
+                _ => acc.push(c),
             }
             (acc, count, map)
         },

@@ -2,6 +2,8 @@
 
 A minimalist web application built with the Dioxus framework for real-time input sanitization. This project focuses on providing a lightweight and fast solution for escaping HTML and JavaScript to prevent cross-site scripting (XSS) vulnerabilities in web applications.
 
+[Use it here](https://benschneider.github.io/SanitizeText/)
+
 ## Features
 - **Real-time Sanitization:** Input is sanitized as you type.
 - **HTML/JS Escape Protection:** Prevents common XSS attacks by escaping malicious code.
