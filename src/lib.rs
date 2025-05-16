@@ -112,7 +112,7 @@ pub fn clean_invisible(input: &str) -> (String, usize, Vec<String>) {
                     count += 1;
                     *map.entry(desc).or_insert(0) += 1;
                 }
-                // Then check Private Use Area range (U+E0000 to U+E0FFF)
+                
                 c if ('\u{E0000}'..='\u{E0FFF}').contains(&c) => {
                     let code_point = c as u32 - 0xE0000;
                     if let Some(mapped_c) = char::from_u32(code_point) {
@@ -121,9 +121,8 @@ pub fn clean_invisible(input: &str) -> (String, usize, Vec<String>) {
                         acc.push(' ');
                     }
                     count += 1;
-                    *map.entry("Private Use Area (E0000-E0FFF) – non-standard characters").or_insert(0) += 1;
+                    *map.entry("Private Use Area (E0000-E0FFF) – non-standard Invisible characters").or_insert(0) += 1;
                 }
-                // All other characters pass through
                 _ => acc.push(c),
             }
             (acc, count, map)

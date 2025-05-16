@@ -1,9 +1,8 @@
-use dioxus::prelude::*;
+use dioxus::{document::Title, prelude::*};
 
 fn main() {
     dioxus::launch(app);
 }
-
 
 fn app() -> Element {
     let mut input_text = use_signal(|| String::new());
@@ -27,9 +26,7 @@ fn app() -> Element {
     };
 
     rsx! {
-
-        
-
+        Title{ "🧼 Unicode Sanitizer" }
             div {
                 style: "
                     max-width: 800px;
@@ -69,7 +66,9 @@ fn app() -> Element {
                         "🧹 Clean"
                     }
                 }
-
+               
+               {removal_summary}
+               
                 h2 { "Cleaned Output" }
                 pre {
                     style: "
@@ -83,7 +82,7 @@ fn app() -> Element {
                     "{output_text()}"
                 }
 
-                {removal_summary}
+ 
             }
         
     }
